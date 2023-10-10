@@ -1,0 +1,159 @@
+<p-table #table [columns]="settingTable.headers" [value]="settingTable.column" selectionMode="multiple"
+    styleClass="p-datatable-responsive-demo p-datatable-striped" (onRowSelect)="onRowSelect($event)"
+    (onRowUnselect)="onRowUnselect($event)" (onHeaderCheckboxToggle)="onHeaderCheckbox($event)" [scrollable]="true"
+    scrollHeight="50vh" [showCurrentPageReport]="settingTable?.config?.scrollable === false ? false : true"
+    responsiveLayout="scroll" [paginator]="false">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngIf="settingTable.checkbox" style="width: 3rem">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th *ngIf="settingTable.action && !settingTable.responseIfNull"
+                [class]="settingTable.listAction?.length > 1 ? 'two-action' : 'one-action'">
+            </th>
+            <th style="width: 4rem" *ngIf="settingTable.config.numbering">No</th>
+            <ng-container *ngFor="let col of columns">
+                <th *ngIf="!col.hide" [class]="getWidth(col)"
+                    [ngStyle]="{'width': (settingTable.column.length && col.width) ? col.width : '' }">
+                    <ng-container>
+                        {{ col.name }}
+                    </ng-container>
+                </th>
+            </ng-container>
+        </tr>
+        <tr *ngIf="settingTable.column.length==0 && !settingTable.config.loading">
+            <td *ngIf="settingTable.action && !settingTable.responseIfNull" style="width: 2rem"></td>
+            <td [colSpan]="countHeaders">
+                <h5 style="text-align: center;position: relative;">Data tidak ditemukan</h5>
+            </td>
+        </tr>
+
+        <tr *ngIf="settingTable.column.length==0 && settingTable.config.loading">
+            <td style="width: 4rem"></td>
+            <td [colSpan]="countHeaders" class="one-skeleton">
+                <p-skeleton *ngFor="let item of counter(5)" height="1.5rem" styleClass="mb-3"></p-skeleton>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-i="rowIndex">
+        <tr *ngIf="!settingTable.config.loading">
+            <td *ngIf="settingTable.checkbox" style="width: 3rem">
+                <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+            </td>
+            <td *ngIf="settingTable.action" style="text-align:center;"
+                [class]="settingTable.listAction?.length > 1 ? 'two-action' : 'one-action'">
+                <span *ngFor="let icons of settingTable.listAction">
+                    <button pButton pRipple appPermission [moduleName]="icons.moduleName"
+                        [accessType]="icons.accessType" type="button" [icon]="getToolTip(icons.tooltip)"
+                        [disabled]="icons.disabled" (click)="global(icons.tooltip, rowData)"
+                        class="p-button-rounded p-button-text"></button>
+                </span>
+            </td>
+            <td style="width: 4rem" *ngIf="settingTable.config.numbering">
+                {{ no+i+1 }}
+            </td>
+            <ng-container *ngFor="let col of columns">
+                <td *ngIf="!col.hide" [class]="getWidth(col)" [ngStyle]="{'width': (settingTable.column.length && col.width) ? col.width : '', 
+                'text-align':  (col?.pipe == 'currency' || col?.pipe == 'currencyDollar')  ? 'right' : 'left' }">
+                    <ng-container
+                        *ngIf="col.additional && (rowData[col.value] !== '' && rowData[col.value] !== '-' && rowData[col.value] !== null) && !col.hide">
+                        <ng-container class="text-right" *ngIf="col.pipe === 'currency'">{{ rowData[col.value] |
+                            formatcurrency }}
+                        </ng-container>
+                        <ng-container class="text-right" *ngIf="col.pipe === 'currencyDollar'">${{ rowData[col.value] |
+                            formatcurrency }}
+                        </ng-container>
+                        <ng-container *ngIf="col.pipe === 'date' && !col.from">{{ rowData[col.value] | formatdate }}
+                        </ng-container>
+                        <ng-container *ngIf="col.pipe === 'date' && col.from">{{ rowData[col.value] |
+                            formatdate:col.from }}
+                        </ng-container>
+                        <ng-container *ngIf="col.linkStatus && rowData[col.conditionField] === 1">
+                            <p class="link" (click)="onClickedRowLink(rowData, col.value)">{{ rowData[col.value] }} </p>
+                        </ng-container>
+                        <ng-container *ngIf="col.linkStatus && rowData[col.conditionField] === 0">
+                            {{ rowData[col.value] }}
+                        </ng-container>
+                        <ng-container *ngIf="col.color">
+                            <p [style]="{'color': col.color}">{{ rowData[col.value] }}</p>
+                        </ng-container>
+                        <ng-container *ngIf="col.check">
+                            <p-checkbox [name]="col.value" [(ngModel)]="rowData[col.value]" [binary]="true"
+                                [disabled]="true">
+                            </p-checkbox>
+                        </ng-container>
+
+                        <ng-container *ngIf="col.claimCategory">
+                            <i *ngIf="col.name === 'Dealer' && rowData[col.value] === 1"
+                                class="pi pi-circle-on i-status"></i>
+                            <i *ngIf="col.name === 'TAM' && rowData[col.value] === 2"
+                                class="pi pi-circle-on i-status"></i>
+                            <i *ngIf="col.name === 'Settlement' && rowData[col.value] === 3"
+                                class="pi pi-circle-on i-status"></i>
+                        </ng-container>
+
+                        <ng-container *ngIf="col.link">
+                            <p class="link" (click)="global('download', rowData, col.value)"> {{ rowData[col.value] }}
+                            </p>
+                        </ng-container>
+
+                        <ng-container *ngIf="col?.conditionLinkSett">
+                            <div class="link"
+                                *ngIf="rowData[col?.conditionLinkSett].value != col?.conditionValueSett && rowData[col.value]?.identity == LABEL.pending"
+                                (click)="global('linkProcess', rowData[col?.conditionLinkSett].value, col.value)"
+                                [title]="rowData[col?.tooltip] ? rowData[col?.tooltip] : ''">
+                                <div *ngIf="!rowData[col.value]?.color">{{ rowData[col.value].value }}</div>
+                                <div *ngIf="rowData[col.value]?.color"
+                                    [ngStyle]="{'background-color': rowData[col.value].color }"
+                                    [innerHTML]="rowData[col.value].value"></div>
+                            </div>
+                            <div *ngIf="rowData[col?.conditionLinkSett].value == col?.conditionValueSett ||
+                                rowData[col?.conditionLinkSett].value != col?.conditionValueSett && rowData[col.value]?.identity != LABEL.pending"
+                                [title]="rowData[col?.tooltip] ? rowData[col?.tooltip] : ''">
+                                <div *ngIf="!rowData[col.value]?.color">{{ rowData[col.value].value }}</div>
+                                <div *ngIf="rowData[col.value]?.color"
+                                    [ngStyle]="{'background-color': rowData[col.value].color }"
+                                    [innerHTML]="rowData[col.value].value"></div>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="col?.conditionLink">
+                            <p class="link" *ngIf="rowData[col?.conditionLink] == col?.conditionValue"
+                                (click)="global('download', rowData, col.value)"
+                                [title]="rowData[col?.tooltip] ? rowData[col?.tooltip] : ''"> {{
+                                rowData[col.value] }} </p>
+                            <p *ngIf="rowData[col?.conditionLink] != col?.conditionValue"
+                                [title]="rowData[col?.tooltip] ? rowData[col?.tooltip] : ''">
+                                {{ rowData[col.value] }} </p>
+                        </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="!col.additional && !col.hide">
+                        <div *ngIf="!rowData[col.value]?.color">{{ rowData[col.value] }}</div>
+                        <div *ngIf="rowData[col.value]?.color"
+                            [ngStyle]="{'background-color': rowData[col.value].color }"
+                            [innerHTML]="rowData[col.value].value"></div>
+                    </ng-container>
+                </td>
+            </ng-container>
+        </tr>
+        <tr *ngIf="settingTable.config.loading">
+            <td style="width: 3rem">
+                <p-tableCheckbox></p-tableCheckbox>
+            </td>
+            <!-- <td *ngIf="settingTable.action && settingTable.column.length !== 0" style="text-align:center;width: 3rem">
+                <p-skeleton width="30px" height="1rem"></p-skeleton>
+                <p-skeleton width="30px" height="1rem"></p-skeleton>
+            </td> -->
+            <td style="width: 4rem">
+                <p-skeleton></p-skeleton>
+            </td>
+            <td style="width: 9rem" *ngFor="let col of columns">
+                <p-skeleton></p-skeleton>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+<p-paginator *ngIf="settingTable.config?.isPaging" [rows]="settingTable.config.pageSize" [showCurrentPageReport]="true"
+    (onPageChange)="pageIndexChange($event)" #paginator
+    currentPageReportTemplate="Showing {first} to {last} of {{settingTable.config.total}} entries"
+    [totalRecords]="settingTable.config.total" [rowsPerPageOptions]="[10, 25, 50, 100, 200]"></p-paginator>
