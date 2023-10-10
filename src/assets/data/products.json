@@ -1,64 +1,16 @@
 {
 	"data": [
 		{
-			"id": "1007",
-			"code": "mbvjkgip5",
-			"name": "Galaxy Earrings",
+			"id": "1000",
+			"code": "f230fh0g3",
+			"name": "Bamboo Watch",
 			"description": "Product Description",
-			"image": "galaxy-earrings.jpg",
-			"price": 34,
+			"image": "bamboo-watch.jpg",
+			"price": 65,
 			"category": "Accessories",
-			"quantity": 23,
+			"quantity": 24,
 			"inventoryStatus": "INSTOCK",
 			"rating": 5
-		},
-		{
-			"id": "1024",
-			"code": "lm2tny2k4",
-			"name": "Shoes",
-			"description": "Product Description",
-			"image": "shoes.jpg",
-			"price": 64,
-			"category": "Clothing",
-			"quantity": 0,
-			"inventoryStatus": "INSTOCK",
-			"rating": 4
-		},
-		{
-			"id": "1016",
-			"code": "k8l6j58jl",
-			"name": "Lime Band",
-			"description": "Product Description",
-			"image": "lime-band.jpg",
-			"price": 79,
-			"category": "Fitness",
-			"quantity": 12,
-			"inventoryStatus": "INSTOCK",
-			"rating": 3
-		},
-		{
-			"id": "1009",
-			"code": "cm230f032",
-			"name": "Gaming Set",
-			"description": "Product Description",
-			"image": "gaming-set.jpg",
-			"price": 299,
-			"category": "Electronics",
-			"quantity": 63,
-			"inventoryStatus": "INSTOCK",
-			"rating": 3
-		},
-		{
-			"id": "1002",
-			"code": "zz21cz3c1",
-			"name": "Blue Band",
-			"description": "Product Description",
-			"image": "blue-band.jpg",
-			"price": 79,
-			"category": "Fitness",
-			"quantity": 2,
-			"inventoryStatus": "LOWSTOCK",
-			"rating": 3
 		},
 		{
 			"id": "1001",
@@ -73,6 +25,18 @@
 			"rating": 4
 		},
 		{
+			"id": "1002",
+			"code": "zz21cz3c1",
+			"name": "Blue Band",
+			"description": "Product Description",
+			"image": "blue-band.jpg",
+			"price": 79,
+			"category": "Fitness",
+			"quantity": 2,
+			"inventoryStatus": "LOWSTOCK",
+			"rating": 3
+		},
+		{
 			"id": "1003",
 			"code": "244wgerg2",
 			"name": "Blue T-Shirt",
@@ -85,15 +49,27 @@
 			"rating": 5
 		},
 		{
-			"id": "1019",
-			"code": "mnb5mb2m5",
-			"name": "Pink Band",
+			"id": "1004",
+			"code": "h456wer53",
+			"name": "Bracelet",
 			"description": "Product Description",
-			"image": "pink-band.jpg",
-			"price": 79,
-			"category": "Fitness",
-			"quantity": 63,
+			"image": "bracelet.jpg",
+			"price": 15,
+			"category": "Accessories",
+			"quantity": 73,
 			"inventoryStatus": "INSTOCK",
+			"rating": 4
+		},
+		{
+			"id": "1005",
+			"code": "av2231fwg",
+			"name": "Brown Purse",
+			"description": "Product Description",
+			"image": "brown-purse.jpg",
+			"price": 120,
+			"category": "Accessories",
+			"quantity": 0,
+			"inventoryStatus": "OUTOFSTOCK",
 			"rating": 4
 		},
 		{
@@ -109,16 +85,16 @@
 			"rating": 3
 		},
 		{
-			"id": "1025",
-			"code": "nbm5mv45n",
-			"name": "Sneakers",
+			"id": "1007",
+			"code": "mbvjkgip5",
+			"name": "Galaxy Earrings",
 			"description": "Product Description",
-			"image": "sneakers.jpg",
-			"price": 78,
-			"category": "Clothing",
-			"quantity": 52,
+			"image": "galaxy-earrings.jpg",
+			"price": 34,
+			"category": "Accessories",
+			"quantity": 23,
 			"inventoryStatus": "INSTOCK",
-			"rating": 4
+			"rating": 5
 		},
 		{
 			"id": "1008",
@@ -131,6 +107,18 @@
 			"quantity": 2,
 			"inventoryStatus": "LOWSTOCK",
 			"rating": 4
+		},
+		{
+			"id": "1009",
+			"code": "cm230f032",
+			"name": "Gaming Set",
+			"description": "Product Description",
+			"image": "gaming-set.jpg",
+			"price": 299,
+			"category": "Electronics",
+			"quantity": 63,
+			"inventoryStatus": "INSTOCK",
+			"rating": 3
 		},
 		{
 			"id": "1010",
@@ -157,18 +145,6 @@
 			"rating": 4
 		},
 		{
-			"id": "1015",
-			"code": "vb34btbg5",
-			"name": "Light Green T-Shirt",
-			"description": "Product Description",
-			"image": "light-green-t-shirt.jpg",
-			"price": 49,
-			"category": "Clothing",
-			"quantity": 34,
-			"inventoryStatus": "INSTOCK",
-			"rating": 4
-		},
-		{
 			"id": "1012",
 			"code": "250vm23cc",
 			"name": "Green T-Shirt",
@@ -179,6 +155,18 @@
 			"quantity": 74,
 			"inventoryStatus": "INSTOCK",
 			"rating": 5
+		},
+		{
+			"id": "1013",
+			"code": "fldsmn31b",
+			"name": "Grey T-Shirt",
+			"description": "Product Description",
+			"image": "grey-t-shirt.jpg",
+			"price": 48,
+			"category": "Clothing",
+			"quantity": 0,
+			"inventoryStatus": "OUTOFSTOCK",
+			"rating": 3
 		},
 		{
 			"id": "1014",
@@ -193,6 +181,30 @@
 			"rating": 5
 		},
 		{
+			"id": "1015",
+			"code": "vb34btbg5",
+			"name": "Light Green T-Shirt",
+			"description": "Product Description",
+			"image": "light-green-t-shirt.jpg",
+			"price": 49,
+			"category": "Clothing",
+			"quantity": 34,
+			"inventoryStatus": "INSTOCK",
+			"rating": 4
+		},
+		{
+			"id": "1016",
+			"code": "k8l6j58jl",
+			"name": "Lime Band",
+			"description": "Product Description",
+			"image": "lime-band.jpg",
+			"price": 79,
+			"category": "Fitness",
+			"quantity": 12,
+			"inventoryStatus": "INSTOCK",
+			"rating": 3
+		},
+		{
 			"id": "1017",
 			"code": "v435nn85n",
 			"name": "Mini Speakers",
@@ -202,18 +214,6 @@
 			"category": "Clothing",
 			"quantity": 42,
 			"inventoryStatus": "INSTOCK",
-			"rating": 4
-		},
-		{
-			"id": "1005",
-			"code": "av2231fwg",
-			"name": "Brown Purse",
-			"description": "Product Description",
-			"image": "brown-purse.jpg",
-			"price": 120,
-			"category": "Accessories",
-			"quantity": 0,
-			"inventoryStatus": "OUTOFSTOCK",
 			"rating": 4
 		},
 		{
@@ -227,6 +227,18 @@
 			"quantity": 41,
 			"inventoryStatus": "INSTOCK",
 			"rating": 5
+		},
+		{
+			"id": "1019",
+			"code": "mnb5mb2m5",
+			"name": "Pink Band",
+			"description": "Product Description",
+			"image": "pink-band.jpg",
+			"price": 79,
+			"category": "Fitness",
+			"quantity": 63,
+			"inventoryStatus": "INSTOCK",
+			"rating": 4
 		},
 		{
 			"id": "1020",
@@ -277,52 +289,28 @@
 			"rating": 5
 		},
 		{
-			"id": "1028",
-			"code": "tx125ck42",
-			"name": "Yoga Mat",
+			"id": "1024",
+			"code": "lm2tny2k4",
+			"name": "Shoes",
 			"description": "Product Description",
-			"image": "yoga-mat.jpg",
-			"price": 20,
-			"category": "Fitness",
-			"quantity": 15,
-			"inventoryStatus": "INSTOCK",
-			"rating": 5
-		},
-		{
-			"id": "1027",
-			"code": "acvx872gc",
-			"name": "Yellow Earbuds",
-			"description": "Product Description",
-			"image": "yellow-earbuds.jpg",
-			"price": 89,
-			"category": "Electronics",
-			"quantity": 35,
-			"inventoryStatus": "INSTOCK",
-			"rating": 3
-		},
-		{
-			"id": "1000",
-			"code": "f230fh0g3",
-			"name": "Bamboo Watch",
-			"description": "Product Description",
-			"image": "bamboo-watch.jpg",
-			"price": 65,
-			"category": "Accessories",
-			"quantity": 24,
-			"inventoryStatus": "INSTOCK",
-			"rating": 5
-		},
-		{
-			"id": "1013",
-			"code": "fldsmn31b",
-			"name": "Grey T-Shirt",
-			"description": "Product Description",
-			"image": "grey-t-shirt.jpg",
-			"price": 48,
+			"image": "shoes.jpg",
+			"price": 64,
 			"category": "Clothing",
 			"quantity": 0,
-			"inventoryStatus": "OUTOFSTOCK",
-			"rating": 3
+			"inventoryStatus": "INSTOCK",
+			"rating": 4
+		},
+		{
+			"id": "1025",
+			"code": "nbm5mv45n",
+			"name": "Sneakers",
+			"description": "Product Description",
+			"image": "sneakers.jpg",
+			"price": 78,
+			"category": "Clothing",
+			"quantity": 52,
+			"inventoryStatus": "INSTOCK",
+			"rating": 4
 		},
 		{
 			"id": "1026",
@@ -337,16 +325,28 @@
 			"rating": 3
 		},
 		{
-			"id": "1004",
-			"code": "h456wer53",
-			"name": "Bracelet",
+			"id": "1027",
+			"code": "acvx872gc",
+			"name": "Yellow Earbuds",
 			"description": "Product Description",
-			"image": "bracelet.jpg",
-			"price": 15,
-			"category": "Accessories",
-			"quantity": 73,
+			"image": "yellow-earbuds.jpg",
+			"price": 89,
+			"category": "Electronics",
+			"quantity": 35,
 			"inventoryStatus": "INSTOCK",
-			"rating": 4
+			"rating": 3
+		},
+		{
+			"id": "1028",
+			"code": "tx125ck42",
+			"name": "Yoga Mat",
+			"description": "Product Description",
+			"image": "yoga-mat.jpg",
+			"price": 20,
+			"category": "Fitness",
+			"quantity": 15,
+			"inventoryStatus": "INSTOCK",
+			"rating": 5
 		},
 		{
 			"id": "1029",
