@@ -9,7 +9,7 @@ import { environment } from './environments/environment';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
-import { ProductService } from './app/service/product.service';
+import { EmployeeService } from './app/service/employee.service';
 
 
 const scrollConfig: InMemoryScrollingOptions = {
@@ -30,7 +30,7 @@ bootstrapApplication(AppComponent, {
         provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
         { provide: LocationStrategy, useClass: HashLocationStrategy }, 
-        MessageService, ConfirmationService, ProductService 
+        MessageService, ConfirmationService, EmployeeService 
     ]
 })
   .catch(err => console.error(err));

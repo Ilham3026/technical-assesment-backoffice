@@ -1,16 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Product } from '../api/product';
+import { Employee } from '../api/employee';
 
 @Injectable()
-export class ProductService {
+export class EmployeeService {
 
     constructor(private http: HttpClient) { }
 
-    getProducts() {
-        return this.http.get<any>('assets/data/products.json')
+    getEmployees() {
+        return this.http.get<any>('assets/data/employee.json')
             .toPromise()
-            .then(res => res.data as Product[])
+            .then(res => res.employee as Employee[])
             .then(data => data);
     }
 
