@@ -1,36 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from 'src/app/api/employee';
-import { MessageService, SharedModule } from 'primeng/api';
-import { Table, TableModule } from 'primeng/table';
-import { EmployeeService } from 'src/app/service/employee.service';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { RadioButtonModule } from 'primeng/radiobutton';
-import { DropdownModule } from 'primeng/dropdown';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { NgIf, NgClass, CurrencyPipe, DatePipe } from '@angular/common';
-import { DialogModule } from 'primeng/dialog';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RatingModule } from 'primeng/rating';
-import { InputTextModule } from 'primeng/inputtext';
-import { FileUploadModule } from 'primeng/fileupload';
-import { RippleModule } from 'primeng/ripple';
-import { ButtonModule } from 'primeng/button';
+import { MessageService, SharedModule } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { ToolbarModule } from 'primeng/toolbar';
-import { ToastModule } from 'primeng/toast';
+import { Employee } from 'src/app/api/employee';
+import { EmployeeService } from 'src/app/service/employee.service';
+import { Table as moduleTable } from 'src/app/shared/module/table';
+import { Form } from 'src/app/shared/module/form';
+import { Message } from 'src/app/shared/module/message';
+import { Constant } from 'src/app/config/constant';
+import { Messages } from 'src/app/config/messages';
+import { Label } from 'src/app/config/label';
 
 @Component({
     templateUrl: './employee.component.html',
     providers: [MessageService],
     standalone: true,
-    imports: [ToastModule, ToolbarModule, SharedModule, ButtonModule, RippleModule, FileUploadModule, TableModule, InputTextModule, RatingModule, FormsModule, DialogModule, NgIf, NgClass, InputTextareaModule, DropdownModule, RadioButtonModule, InputNumberModule, CurrencyPipe, DatePipe]
+    imports: [CommonModule, ...moduleTable, ...Form, ...Message, ToolbarModule, SharedModule, FormsModule]
 })
 export class EmployeeComponent implements OnInit {
+
+    constant = Constant; messages = Messages; label = Label;
+
+    today: Date = new Date();
+
+    employeeTitleDialog: boolean = false;
 
     employeeDialog: boolean = false;
 
     deleteEmployeeDialog: boolean = false;
 
     deleteEmployeesDialog: boolean = false;
+
+    searchDialog: boolean = false;
+    
+    validEmail: boolean = false;
 
     employees: Employee[] = [];
 
@@ -39,6 +44,12 @@ export class EmployeeComponent implements OnInit {
     selectedEmployees: Employee[] = [];
 
     submitted: boolean = false;
+
+    searchAll: string = '';
+
+    searchValue: Employee = {};
+
+    searchAllFilter: any = [];
 
     cols: any[] = [];
 
@@ -52,6 +63,18 @@ export class EmployeeComponent implements OnInit {
 
     ngOnInit() {
         this.employeeService.getEmployees().then(data => this.employees = data);
+
+        this.searchAllFilter = [
+            'username',
+            'firstName',
+            'lastName',
+            'email',
+            'birthDate',
+            'basicSalary',
+            'status',
+            'group',
+            'description'
+        ];
 
         this.cols = [
             { field: 'username', header: 'Username' },
@@ -88,6 +111,7 @@ export class EmployeeComponent implements OnInit {
         this.employee = {};
         this.submitted = false;
         this.employeeDialog = true;
+        this.employeeTitleDialog = true;
     }
 
     deleteSelectedEmployees() {
@@ -97,6 +121,7 @@ export class EmployeeComponent implements OnInit {
     editEmployee(employee: Employee) {
         this.employee = { ...employee };
         this.employeeDialog = true;
+        this.employeeTitleDialog = false;
     }
 
     deleteEmployee(employee: Employee) {
@@ -123,10 +148,15 @@ export class EmployeeComponent implements OnInit {
         this.submitted = false;
     }
 
+    validateEmail(dt: any) {
+        !dt?this.validEmail=true:this.validEmail=false;
+    }
+
     saveEmployee() {
         this.submitted = true;
 
-        if (this.employee.username?.trim()) {
+        if (this.employee.username?.trim() && this.employee.firstName?.trim() && this.employee.lastName?.trim() && 
+            this.employee.email?.trim() && this.validEmail && this.employee.status) {
             if (this.employee.id) {
                 // @ts-ignore
                 this.employee.inventoryStatus = this.employee.inventoryStatus.value ? this.employee.inventoryStatus.value : this.employee.inventoryStatus;
@@ -169,5 +199,15 @@ export class EmployeeComponent implements OnInit {
 
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+    }
+
+    onFilter(table: Table, event: Event, field: string) {
+        table.filter((event.target as HTMLInputElement).value, field, 'contains');
+    }
+
+    clearSearch(dt: Table) {
+        dt.reset();
+        this.searchValue = {};
+        this.searchAll = '';
     }
 }
