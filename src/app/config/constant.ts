@@ -1,6 +1,6 @@
 export const Constant = {
 
-    // notif duration
+    // notif duration default
     duration: 5000,
 
 }

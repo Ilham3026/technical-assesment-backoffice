@@ -1,12 +1,3 @@
-interface EmployeeStatus {
-    label: string;
-    value: string;
-}
-
-interface GroupStatus {
-    label: string;
-    value: string;
-}
 export interface Employee {
     id?: string;
     username?: string;
@@ -15,7 +6,7 @@ export interface Employee {
     email?: string;
     birthDate?: number;
     basicSalary?: number;
-    status?: EmployeeStatus;
-    group?: GroupStatus;
+    status?: string;
+    group?: string;
     description?: string;
 }

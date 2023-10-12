@@ -1,9 +1,17 @@
 export const Messages = {
 
     //dialog delete
-    title_confirm: 'Konfirmasi',
     delete_confirm: 'Are you sure you want to delete this data?',
     delete_confirm_selected_employee: 'Are you sure you want to delete selected employees?',
-    save_confirm: 'Apakah Anda yakin untuk menyimpan data ini?'
+
+    //message
+    error_type: 'error',
+    warning_type: 'warn',
+    success_type: 'success',
+    success_title: 'Successful',
+    delete_employees: 'Employees Deleted',
+    delete_employee: 'Employee Deleted',
+    created_employee: 'Employee Created',
+    updated_employee: 'Employee Updated'
 
 };

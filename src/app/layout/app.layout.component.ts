@@ -4,7 +4,6 @@ import { filter, Subscription } from 'rxjs';
 import { LayoutService } from "./service/app.layout.service";
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppTopBarComponent } from './app.topbar.component';
-import { AppConfigComponent } from './config/app.config.component';
 import { AppFooterComponent } from './app.footer.component';
 import { NgClass } from '@angular/common';
 
@@ -12,7 +11,7 @@ import { NgClass } from '@angular/common';
     selector: 'app-layout',
     templateUrl: './app.layout.component.html',
     standalone: true,
-    imports: [NgClass, AppTopBarComponent, AppSidebarComponent, RouterOutlet, AppFooterComponent, AppConfigComponent]
+    imports: [NgClass, AppTopBarComponent, AppSidebarComponent, RouterOutlet, AppFooterComponent]
 })
 export class AppLayoutComponent implements OnDestroy {
 

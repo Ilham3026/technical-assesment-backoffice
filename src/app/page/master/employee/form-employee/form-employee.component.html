@@ -1,0 +1,89 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+			<h5>{{label.employee_title_add}}</h5>
+            <div class="p-fluid p-formgrid grid">
+				<div class="field col-12 md:col-6">
+                    <label for="username">{{label.username}}</label>
+                    <input type="text" pInputText id="username" [(ngModel)]="employee.username" required autofocus 
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !employee.username}"/>
+                    <small class="ng-dirty ng-invalid text-red-500" *ngIf="submitted && !employee.username">{{label.invalid_username}}</small>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="firstName">{{label.firstName}}</label>
+                    <input type="text" pInputText id="firstName" [(ngModel)]="employee.firstName" required 
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !employee.firstName}"/>
+                    <small class="ng-dirty ng-invalid text-red-500" *ngIf="submitted && !employee.firstName">{{label.invalid_firstName}}</small>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="lastName">{{label.lastName}}</label>
+                    <input type="text" pInputText id="lastName" [(ngModel)]="employee.lastName" required 
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !employee.lastName}"/>
+                    <small class="ng-dirty ng-invalid text-red-500" *ngIf="submitted && !employee.lastName">{{label.invalid_lastName}}</small>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="email">{{label.email}}</label>
+                    <input type="text" pInputText id="email" [(ngModel)]="employee.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                        ngModel #emailref="ngModel" [ngClass]="{'ng-invalid ng-dirty' : submitted && !employee.email && !emailref.errors?.pattern}" 
+                        (input)="validateEmail(emailref.errors?.pattern)"/>
+                    <small class="ng-dirty ng-invalid text-red-500" *ngIf="submitted && !employee.email">{{label.invalid_email}}</small>
+                    <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class="ng-dirty ng-invalid text-red-500">
+                        <small [hidden]="!emailref.errors?.pattern">
+                            {{label.invalid_email_pattern}}
+                        </small>
+                    </div>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="birthDate">{{label.birthDate}}</label>
+                    <p-calendar id="birthDate" [(ngModel)]="employee.birthDate" required [maxDate]="today"
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !employee.birthDate}">
+                    </p-calendar>
+                    <small class="ng-dirty ng-invalid text-red-500" *ngIf="submitted && !employee.birthDate">{{label.birthDate}}</small>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="basicSalary">{{label.basicSalary}}</label>
+                    <p-inputNumber id="basicSalary" [(ngModel)]="employee.basicSalary" prefix="Rp" [minFractionDigits]="0" 
+                    [ngClass]="{'ng-invalid ng-dirty' : submitted && !employee.basicSalary}"></p-inputNumber>
+                    <small class="ng-dirty ng-invalid text-red-500" *ngIf="submitted && !employee.basicSalary">{{label.basicSalary}}</small>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="status">{{label.status}}</label>
+                    <p-dropdown [(ngModel)]="employee.status" inputId="status" optionValue="value" [options]="statuses" placeholder="{{label.select}}"
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !employee.status}">
+                        <ng-template pTemplate="selectedItem">
+                            <span *ngIf="employee && employee.status" [class]="'employee-badge status-' + employee.status.toString().toLowerCase()">{{employee.status}}</span>
+                        </ng-template>
+                        <ng-template let-option pTemplate="item">
+                            <span [class]="'employee-badge status-' + option.value">{{option.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                    <small class="ng-dirty ng-invalid text-red-500" *ngIf="submitted && !employee.status">{{label.invalid_status}}</small>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="group">{{label.group}}</label>
+                    <p-dropdown [(ngModel)]="employee.group" inputId="group" optionValue="value" [filter]="true" filterBy="label" 
+                        [options]="group" placeholder="{{label.select}}" [ngClass]="{'ng-invalid ng-dirty' : submitted && !employee.group}">
+                        <ng-template pTemplate="selectedItem">
+                            <span *ngIf="employee && employee.group" [class]="'employee-badge status-' + employee.group.toString().toLowerCase()">{{employee.group}}</span>
+                        </ng-template>
+                        <ng-template let-option pTemplate="item">
+                            <span [class]="'employee-badge status-' + option.value">{{option.label}}</span>
+                        </ng-template>
+                    </p-dropdown>
+                    <small class="ng-dirty ng-invalid text-red-500" *ngIf="submitted && !employee.group">{{label.invalid_group}}</small>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="description">{{label.description}}</label>
+                    <p-calendar id="description" [(ngModel)]="employee.description" required 
+                        [ngClass]="{'ng-invalid ng-dirty' : submitted && !employee.description}">
+                    </p-calendar>
+                    <small class="ng-dirty ng-invalid text-red-500" *ngIf="submitted && !employee.description">{{label.description}}</small>
+                </div>
+            </div>
+            <div class="flex flex-wrap align-items-end justify-content-end">
+                <button pButton pRipple label="{{label.cancel}}" icon="pi pi-times" class="p-button-text" (click)="backToEmployee()"></button>
+                <button pButton pRipple label="{{label.save}}" icon="pi pi-check" class="p-button-text" (click)="saveEmployee()"></button>
+            </div>
+        </div>
+    </div>
+</div>

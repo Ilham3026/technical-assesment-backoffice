@@ -16,12 +16,10 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.utils.showLoading();
+        
         setTimeout(() => {
-        this.utils.hideLoading();
-
-        this.utils.showConfirm('tes','tes');
-        // this.utils.showNotification('success', 'info', 'ini tes')
-        }, 1000);
+            this.utils.hideLoading();
+        }, 500);
         
         this.primengConfig.ripple = true;
     }
