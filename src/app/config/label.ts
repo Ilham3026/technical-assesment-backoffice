@@ -66,5 +66,7 @@ export const Label = {
 
     ph_username: 'Enter username',
     ph_password: 'Enter password',
+
+    dashboard_content: 'You can start by clicking menu',
     
 };
