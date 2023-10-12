@@ -25,3 +25,8 @@ npm start
 ## Step 4
 
 Now open your browser and navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. 
+
+##Login Info
+
+Username : 'admin'
+Password : 'admin'
