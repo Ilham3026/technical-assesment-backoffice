@@ -118,19 +118,19 @@
         <p-dialog [(visible)]="searchDialog" header="{{label.search}}" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
                 <div class="formgrid grid">
-                    <div class="field p-inputgroup col">
+                    <div class="field p-inputgroup col-12 md:col">
                         <input type="text" pInputText placeholder="{{label.phs_username}}" [(ngModel)]="searchValue.username"
                         (input)="onFilter(dt, $event, 'username')" />
                         <button type="button" pButton icon="pi pi-times" class="p-button-warning" 
                         (click)="searchValue.username = ''; onFilter(dt, $event, 'username')"></button>
                     </div>
-                    <div class="field p-inputgroup col">
+                    <div class="field p-inputgroup col-12 md:col">
                         <input type="text" pInputText placeholder="{{label.phs_firstName}}" [(ngModel)]="searchValue.firstName"
                         (input)="onFilter(dt, $event, 'firstName')"/>
                         <button type="button" pButton icon="pi pi-times" class="p-button-warning"
                             (click)="searchValue.firstName = ''; onFilter(dt, $event, 'firstName')"></button>
                     </div>
-                    <div class="field p-inputgroup col">
+                    <div class="field p-inputgroup col-12 md:col">
                         <input type="text" pInputText placeholder="{{label.phs_lastName}}" [(ngModel)]="searchValue.lastName"
                         (input)="onFilter(dt, $event, 'lastName')"/>
                         <button type="button" pButton icon="pi pi-times" class="p-button-warning"
@@ -138,19 +138,19 @@
                     </div>
                 </div>
                 <div class="formgrid grid">
-                    <div class="field p-inputgroup col">
+                    <div class="field p-inputgroup col-12 md:col">
                         <input type="text" pInputText placeholder="{{label.phs_email}}" [(ngModel)]="searchValue.email"
                         (input)="onFilter(dt, $event, 'email')" />
                         <button type="button" pButton icon="pi pi-times" class="p-button-warning" 
                         (click)="searchValue.email = ''; onFilter(dt, $event, 'email')"></button>
                     </div>
-                    <div class="field p-inputgroup col">
+                    <div class="field p-inputgroup col-12 md:col">
                         <input type="text" pInputText placeholder="{{label.phs_birthDate}}" [(ngModel)]="searchValue.birthDate"
                         (input)="onFilter(dt, $event, 'birthDate')"/>
                         <button type="button" pButton icon="pi pi-times" class="p-button-warning"
                             (click)="searchValue.birthDate = ''; onFilter(dt, $event, 'birthDate')"></button>
                     </div>
-                    <div class="field p-inputgroup col">
+                    <div class="field p-inputgroup col-12 md:col">
                         <input type="text" pInputText placeholder="{{label.phs_basicSalary}}" [(ngModel)]="searchValue.basicSalary"
                         (input)="onFilter(dt, $event, 'basicSalary')"/>
                         <button type="button" pButton icon="pi pi-times" class="p-button-warning"
@@ -158,19 +158,19 @@
                     </div>
                 </div>
                 <div class="formgrid grid">
-                    <div class="field p-inputgroup col">
+                    <div class="field p-inputgroup col-12 md:col">
                         <input type="text" pInputText placeholder="{{label.phs_status}}" [(ngModel)]="searchValue.status"
                         (input)="onFilter(dt, $event, 'status')" />
                         <button type="button" pButton icon="pi pi-times" class="p-button-warning" 
                         (click)="searchValue.status = ''; onFilter(dt, $event, 'status')"></button>
                     </div>
-                    <div class="field p-inputgroup col">
+                    <div class="field p-inputgroup col-12 md:col">
                         <input type="text" pInputText placeholder="{{label.phs_group}}" [(ngModel)]="searchValue.group"
                         (input)="onFilter(dt, $event, 'group')"/>
                         <button type="button" pButton icon="pi pi-times" class="p-button-warning"
                             (click)="searchValue.group = ''; onFilter(dt, $event, 'group')"></button>
                     </div>
-                    <div class="field p-inputgroup col">
+                    <div class="field p-inputgroup col-12 md:col">
                         <input type="text" pInputText placeholder="{{label.phs_description}}" [(ngModel)]="searchValue.description"
                         (input)="onFilter(dt, $event, 'description')"/>
                         <button type="button" pButton icon="pi pi-times" class="p-button-warning"
