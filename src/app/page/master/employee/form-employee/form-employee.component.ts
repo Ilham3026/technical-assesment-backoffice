@@ -66,7 +66,8 @@ export class FormEmployeeComponent implements OnInit {
     this.submitted = true;
 
     if (this.employee.username?.trim() && this.employee.firstName?.trim() && this.employee.lastName?.trim() && 
-      this.employee.email?.trim() && this.validEmail && this.employee.status) {
+      this.employee.email?.trim() && this.validEmail && this.employee.birthDate && this.employee.basicSalary && 
+      this.employee.status && this.employee.group && this.employee.description) {
 
       this.employee.id = this.createId();
       this.utils.showNotification(this.messages.success_type, this.messages.success_title, this.messages.created_employee);

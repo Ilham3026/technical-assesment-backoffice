@@ -60,17 +60,10 @@ export class EmployeeComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.employeeService.getEmployees().then(data => {
-            this.utils.setLocalStorage('employees',data);
-            this.employees = data;
-        });
+        this.employees = this.employeeService.employees;
 
         if(history.state.data){
-            this.employees = this.utils.getLocalStorage('employees');
-            setTimeout(() => {
-                this.employees.unshift(history.state.data)
-                console.log(this.employees, history.state.data)
-            }, 500);
+            this.employees.unshift(history.state.data);
         }
 
         this.searchAllFilter = [

@@ -3,6 +3,7 @@ import { PrimeNGConfig } from 'primeng/api';
 import { Router, RouterOutlet } from '@angular/router';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { Utils } from './utils/utils';
+import { EmployeeService } from './service/employee.service';
 
 @Component({
     selector: 'app-root',
@@ -13,6 +14,7 @@ import { Utils } from './utils/utils';
 export class AppComponent implements OnInit {
 
     constructor(
+        private employeeService: EmployeeService, 
         private primengConfig: PrimeNGConfig, 
         private utils: Utils, 
         private router: Router
@@ -20,6 +22,8 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.utils.showLoading();
+        this.employeeService.getEmployees().then(data => this.employeeService.employees = data);
+
         var isLogin = this.utils.getLocalStorage('isLogin');
 
         if(isLogin != 'true'){

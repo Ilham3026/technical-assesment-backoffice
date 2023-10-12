@@ -5,6 +5,8 @@ import { Employee } from '../api/employee';
 @Injectable()
 export class EmployeeService {
 
+    public employees: Employee[] = [];
+
     constructor(private http: HttpClient) { }
 
     getEmployees() {
