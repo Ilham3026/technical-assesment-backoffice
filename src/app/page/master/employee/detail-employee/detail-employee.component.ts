@@ -22,6 +22,8 @@ import { Utils } from 'src/app/utils/utils';
 export class DetailEmployeeComponent implements OnInit {
 
   constant = Constant; messages = Messages; label = Label;
+
+  searchAll: string;
   
   today: Date = new Date();
 
@@ -30,6 +32,8 @@ export class DetailEmployeeComponent implements OnInit {
   submitted: boolean = false;
 
   validEmail:boolean = false;
+
+  search: Employee = {};
 
   statuses: any[] = [];
 
@@ -40,6 +44,8 @@ export class DetailEmployeeComponent implements OnInit {
   ngOnInit(): void {
 
     this.employee = history.state.data;
+    this.search = history.state.search;
+    this.searchAll = history.state.searchAll;
     
     this.statuses = [
       { label: 'ACTIVE', value: 'active' },
@@ -61,7 +67,7 @@ export class DetailEmployeeComponent implements OnInit {
   }
 
   backToEmployee() {
-    this.router.navigate(['master/employee'], {});
+    this.router.navigate(['master/employee'], {state: {search:this.search,searchAll:this.searchAll}});
   }
 
 }

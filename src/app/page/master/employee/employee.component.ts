@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -23,6 +23,8 @@ import { Utils } from 'src/app/utils/utils';
 })
 export class EmployeeComponent implements OnInit {
 
+    @ViewChild('dt', { static: false }) table: Table
+    
     constant = Constant; messages = Messages; label = Label;
 
     deleteEmployeeDialog: boolean = false;
@@ -62,8 +64,40 @@ export class EmployeeComponent implements OnInit {
     ngOnInit() {
         this.employees = this.employeeService.employees;
 
-        if(history.state.data){
+        var hData = history.state.data;
+        if(hData){
             this.employees.unshift(history.state.data);
+        }
+
+        var hSearch = history.state.search;
+        if(hSearch){
+            setTimeout(() => {
+                if(hSearch.username){this.searchValue.username = hSearch.username; 
+                    this.table.filter(hSearch.username, this.constant.username, this.constant.matchMode);}
+                if(hSearch.firstName){this.searchValue.firstName = hSearch.firstName; 
+                    this.table.filter(hSearch.firstName, this.constant.firstName, this.constant.matchMode);}
+                if(hSearch.lastName){this.searchValue.lastName = hSearch.lastName; 
+                    this.table.filter(hSearch.lastName, this.constant.lastName, this.constant.matchMode);}
+                if(hSearch.email){this.searchValue.email = hSearch.email; 
+                    this.table.filter(hSearch.email, this.constant.email, this.constant.matchMode);}
+                if(hSearch.birthDate){this.searchValue.birthDate = hSearch.birthDate; 
+                    this.table.filter(hSearch.birthDate, this.constant.birthDate, this.constant.matchMode);}
+                if(hSearch.basicSalary){this.searchValue.basicSalary = hSearch.basicSalary; 
+                    this.table.filter(hSearch.basicSalary, this.constant.basicSalary, this.constant.matchMode);}
+                if(hSearch.status){this.searchValue.status = hSearch.status; 
+                    this.table.filter(hSearch.status, this.constant.status, this.constant.matchMode);}
+                if(hSearch.group){this.searchValue.group = hSearch.group; 
+                    this.table.filter(hSearch.group, this.constant.group, this.constant.matchMode);}
+                if(hSearch.description){this.searchValue.description = hSearch.description; 
+                    this.table.filter(hSearch.description, this.constant.description, this.constant.matchMode);}
+            }, 500);
+        }
+
+        var hSearchAll = history.state.searchAll;
+        if(hSearchAll){
+            setTimeout(() => {
+                if(hSearchAll){this.searchAll = hSearchAll; this.table.filterGlobal(hSearchAll, this.constant.matchMode);}
+            }, 500);
         }
 
         this.searchAllFilter = [
@@ -96,7 +130,11 @@ export class EmployeeComponent implements OnInit {
     }
 
     detailEmployee(employee: any) {
-        this.router.navigate(['master/detail-employee'], { state: {data:employee} });
+        this.router.navigate(['master/detail-employee'], { state: {
+            data:employee, 
+            search:this.searchValue, 
+            searchAll:this.searchAll
+        } });
     }
 
     deleteSelectedEmployees() {
@@ -127,11 +165,11 @@ export class EmployeeComponent implements OnInit {
     }
 
     onGlobalFilter(table: Table, event: Event) {
-        table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+        table.filterGlobal((event.target as HTMLInputElement).value, this.constant.matchMode);
     }
 
     onFilter(table: Table, event: Event, field: string) {
-        table.filter((event.target as HTMLInputElement).value, field, 'contains');
+        table.filter((event.target as HTMLInputElement).value, field, this.constant.matchMode);
     }
 
     clearSearch(dt: Table) {
