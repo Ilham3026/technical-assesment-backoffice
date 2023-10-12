@@ -12,6 +12,8 @@ export const Messages = {
     delete_employees: 'Employees Deleted',
     delete_employee: 'Employee Deleted',
     created_employee: 'Employee Created',
-    updated_employee: 'Employee Updated'
+    updated_employee: 'Employee Updated',
+    error_password_title: 'Wrong Password',
+    error_password: 'Please check username or password',
 
 };

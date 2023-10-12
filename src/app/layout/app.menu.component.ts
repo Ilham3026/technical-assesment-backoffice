@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
 import { AppMenuitemComponent } from './app.menuitem.component';
 import { NgFor, NgIf } from '@angular/common';
+import { Utils } from '../utils/utils';
 
 @Component({
     selector: 'app-menu',
@@ -14,7 +15,7 @@ export class AppMenuComponent implements OnInit {
 
     model: any[] = [];
 
-    constructor(public layoutService: LayoutService) { }
+    constructor(public layoutService: LayoutService, private utils: Utils) { }
 
     ngOnInit() {
         this.model = [
@@ -23,9 +24,14 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
                     { label: 'Employee', icon: 'pi pi-fw pi-users', routerLink: ['/master/employee'] },
-                    { label: 'Logout', icon: 'pi pi-fw pi-sign-out', routerLink: ['/login'] },
+                    { label: 'Logout', icon: 'pi pi-fw pi-sign-out', routerLink: ['/login'], command: () => this.logout() },
                 ]
             }
         ];
+    }
+
+    logout() {
+        this.utils.clearAllLocalstorage();
+        window.location.reload();
     }
 }

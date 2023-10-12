@@ -1,4 +1,8 @@
 export const Label = {
+
+    //login
+    login_welcoming: 'Welcome, User!',
+    login_title: 'Sign in to continue',
     
     // button
     confirm: 'Confirm',
@@ -30,6 +34,7 @@ export const Label = {
     status: 'Status',
     group: 'Group',
     description: 'Description',
+    password: 'Password',
 
     // employee form
     employee_title_add: 'Employee Add',
@@ -58,5 +63,8 @@ export const Label = {
     phs_status: 'Search Status',
     phs_group: 'Search Group',
     phs_description: 'Search Description',
+
+    ph_username: 'Enter username',
+    ph_password: 'Enter password',
     
 };

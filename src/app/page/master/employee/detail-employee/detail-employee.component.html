@@ -9,27 +9,27 @@
                 </div>
                 <div class="field col-12 md:col-6">
                     <label for="firstName">{{label.firstName}}</label>
-                    <input type="text" pInputText id="firstName" [(ngModel)]="employee.firstName"/>
+                    <input type="text" pInputText id="firstName" [(ngModel)]="employee.firstName" disabled/>
                 </div>
                 <div class="field col-12 md:col-6">
                     <label for="lastName">{{label.lastName}}</label>
-                    <input type="text" pInputText id="lastName" [(ngModel)]="employee.lastName"/>
+                    <input type="text" pInputText id="lastName" [(ngModel)]="employee.lastName" disabled/>
                 </div>
                 <div class="field col-12 md:col-6">
                     <label for="email">{{label.email}}</label>
-                    <input type="text" pInputText id="email" [(ngModel)]="employee.email"/>
+                    <input type="text" pInputText id="email" [(ngModel)]="employee.email" disabled/>
                 </div>
                 <div class="field col-12 md:col-6">
                     <label for="birthDate">{{label.birthDate}}</label>
-                    <p-calendar id="birthDate" [(ngModel)]="employee.birthDate"></p-calendar>
+                    <p-calendar id="birthDate" [(ngModel)]="employee.birthDate" disabled></p-calendar>
                 </div>
                 <div class="field col-12 md:col-6">
                     <label for="basicSalary">{{label.basicSalary}}</label>
-                    <p-inputNumber id="basicSalary" [(ngModel)]="employee.basicSalary" prefix="Rp" [minFractionDigits]="0" ></p-inputNumber>
+                    <p-inputNumber id="basicSalary" [(ngModel)]="employee.basicSalary" prefix="Rp" [minFractionDigits]="0" disabled></p-inputNumber>
                 </div>
                 <div class="field col-12 md:col-6">
                     <label for="status">{{label.status}}</label>
-                    <p-dropdown [(ngModel)]="employee.status" inputId="status" optionValue="value" [options]="statuses" placeholder="{{label.select}}">
+                    <p-dropdown [(ngModel)]="employee.status" inputId="status" optionValue="value" [disabled]="true" [options]="statuses" placeholder="{{label.select}}">
                         <ng-template pTemplate="selectedItem">
                             <span *ngIf="employee && employee.status" [class]="'employee-badge status-' + employee.status.toString().toLowerCase()">{{employee.status}}</span>
                         </ng-template>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="field col-12 md:col-6">
                     <label for="group">{{label.group}}</label>
-                    <p-dropdown [(ngModel)]="employee.group" inputId="group" optionValue="value" [filter]="true" filterBy="label" 
+                    <p-dropdown [(ngModel)]="employee.group" inputId="group" optionValue="value" [disabled]="true" [filter]="true" filterBy="label" 
                         [options]="group" placeholder="{{label.select}}">
                         <ng-template pTemplate="selectedItem">
                             <span *ngIf="employee && employee.group" [class]="'employee-badge status-' + employee.group.toString().toLowerCase()">{{employee.group}}</span>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="field col-12 md:col-6">
                     <label for="description">{{label.description}}</label>
-                    <p-calendar id="description" [(ngModel)]="employee.description" required>
+                    <p-calendar id="description" [(ngModel)]="employee.description" disabled>
                     </p-calendar>
                 </div>
             </div>
