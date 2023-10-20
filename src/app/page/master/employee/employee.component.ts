@@ -71,11 +71,15 @@ export class EmployeeComponent implements OnInit {
 
         var hSearch = history.state.search;
         if(hSearch){
+            this.utils.showLoading();
             setTimeout(() => {
-                this.searchAllFilter.forEach(element => {
+                this.searchAllFilter.forEach((element, index) => {
                     if(hSearch[element]) {
                         this.searchValue[element] = hSearch[element];
                         this.table.filter(hSearch[element], this.constant[element], this.constant.matchMode);
+                    }
+                    if((index+1) === this.searchAllFilter.length){
+                        this.utils.hideLoading();
                     }
                 });
             }, 500);
