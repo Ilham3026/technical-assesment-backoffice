@@ -72,24 +72,12 @@ export class EmployeeComponent implements OnInit {
         var hSearch = history.state.search;
         if(hSearch){
             setTimeout(() => {
-                if(hSearch.username){this.searchValue.username = hSearch.username; 
-                    this.table.filter(hSearch.username, this.constant.username, this.constant.matchMode);}
-                if(hSearch.firstName){this.searchValue.firstName = hSearch.firstName; 
-                    this.table.filter(hSearch.firstName, this.constant.firstName, this.constant.matchMode);}
-                if(hSearch.lastName){this.searchValue.lastName = hSearch.lastName; 
-                    this.table.filter(hSearch.lastName, this.constant.lastName, this.constant.matchMode);}
-                if(hSearch.email){this.searchValue.email = hSearch.email; 
-                    this.table.filter(hSearch.email, this.constant.email, this.constant.matchMode);}
-                if(hSearch.birthDate){this.searchValue.birthDate = hSearch.birthDate; 
-                    this.table.filter(hSearch.birthDate, this.constant.birthDate, this.constant.matchMode);}
-                if(hSearch.basicSalary){this.searchValue.basicSalary = hSearch.basicSalary; 
-                    this.table.filter(hSearch.basicSalary, this.constant.basicSalary, this.constant.matchMode);}
-                if(hSearch.status){this.searchValue.status = hSearch.status; 
-                    this.table.filter(hSearch.status, this.constant.status, this.constant.matchMode);}
-                if(hSearch.group){this.searchValue.group = hSearch.group; 
-                    this.table.filter(hSearch.group, this.constant.group, this.constant.matchMode);}
-                if(hSearch.description){this.searchValue.description = hSearch.description; 
-                    this.table.filter(hSearch.description, this.constant.description, this.constant.matchMode);}
+                this.searchAllFilter.forEach(element => {
+                    if(hSearch[element]) {
+                        this.searchValue[element] = hSearch[element];
+                        this.table.filter(hSearch[element], this.constant[element], this.constant.matchMode);
+                    }
+                });
             }, 500);
         }
 
